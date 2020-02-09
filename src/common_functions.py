@@ -51,11 +51,11 @@ def copy_rows(from_file, to_file, row_numbers):
     :param row_numbers: set of row_numbers to be copied
     :return:
     """
-    with open(data_path + "/user.json", 'rb') as user_file, open("user_sample.json", 'wb') as user_sample_file:
+    with open(from_file, 'rb') as user_file, open(to_file, 'wb') as user_sample_file:
         i = 0
         for line in user_file:
             i += 1
-            if i in sample_row_numbers:
+            if i in row_numbers:
                 user_sample_file.write(line)
 
 
@@ -68,6 +68,6 @@ def get_user_ids(path):
     user_ids = set()
     with open(path, "rb") as file:
         for line in file:
-            user = json.loads(line, encoding="utf-8")
+            user = json.loads(line)
             user_ids.add(user["user_id"])
     return user_ids

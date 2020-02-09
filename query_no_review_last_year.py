@@ -5,6 +5,7 @@
 
 import json
 import datetime as dt
+import argparse
 from common_functions import get_user_ids
 
 
@@ -32,3 +33,18 @@ def get_users_no_review_last_year(user_file, review_file, output_file, current_d
             if (review_date >= last_year) and (review_date < current_date):
                 user_ids.discard(review["user_id"])
         json.dump(list(user_ids), query_output)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Writes all users which have not written a review in the last year '
+                                                 'to a given file')
+    parser.add_argument('user_file', type=str,
+                        help='path of the file where the user data is stored')
+    parser.add_argument('review_file', type=str,
+                        help='path of file which contains the reviews')
+    parser.add_argument('output_file', type=str,
+                        help='path of file where the output will be stored')
+    parser.add_argument('current_date', type=str,
+                        help='the date in the format YYYY-MM-DD which should be handled as the current date')
+    args = parser.parse_args()
+    get_users_no_review_last_year(args.user_file, args.review_file, args.output_file, args.current_date)

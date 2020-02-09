@@ -10,4 +10,4 @@
 - Store all user IDs in a set
 - Go through every review and check if is has been written in the last year
 - then remove the user_id from the set
-- order by timestamp could improve performance
+- order by timestamp and stop if outside of time range could improve performance by multiple queries

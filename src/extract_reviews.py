@@ -17,7 +17,7 @@ def copy_reviews_from_users(review_file, output_file, user_file):
     user_ids = get_user_ids(user_file)
     with open(review_file, 'rb') as review_file, open(output_file, 'wb') as review_sample_file:
         for line in review_file:
-            review = json.loads(line, encoding="utf-8")
+            review = json.loads(line)
             if review["user_id"] in user_ids:
                 review_sample_file.write(line)
 

@@ -10,7 +10,7 @@ from common_functions import get_user_ids
 
 def get_users_no_review_last_year(user_file, review_file, output_file, current_date):
     """
-    Returns all users which have not written a review in the last year
+    Writes all users which have not written a review in the last year to a given file
     :param user_file:
     :param review_file:
     :param output_file:
@@ -25,11 +25,10 @@ def get_users_no_review_last_year(user_file, review_file, output_file, current_d
         last_year = current_date.replace(year=current_date.year - 1, day=current_date.day - 1)
     # get all user IDs and remove all users who have written a review in the last year
     user_ids = get_user_ids(user_file)
-    with open(review_file, "rb") as review_file, open(output_file, "wb") as query_output:
+    with open(review_file, "rb") as review_file, open(output_file, "w") as query_output:
         for line in review_file:
             review = json.loads(line, encoding="utf-8")
             review_date = dt.datetime.fromisoformat(review["date"])
-            if (review_date >= last_year) & (review_date < current_date):
+            if (review_date >= last_year) and (review_date < current_date):
                 user_ids.discard(review["user_id"])
-    json.dump(user_ids, output_file)
-
+        json.dump(list(user_ids), query_output)

@@ -30,7 +30,7 @@ def get_users_no_review_last_year(user_file, review_file, output_file, current_d
     user_ids = get_user_ids(user_file)
     with open(review_file, "rb") as review_file, open(output_file, "w") as query_output:
         for line in review_file:
-            review = json.loads(line, encoding="utf-8")
+            review = json.loads(line)
             review_date = dt.datetime.fromisoformat(review["date"])
             if (review_date >= last_year) and (review_date < current_date):
                 user_ids.discard(review["user_id"])

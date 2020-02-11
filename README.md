@@ -28,7 +28,7 @@ $ docker run -it --rm -v path_of_yelp_dataset:/data newyorker/excercise /data/fi
 
 Example:
 
-This example will run the query for the 2nd of February in 2017 on the file `yelp_dataset.tar`.
+This example will run the query for the 2nd of January in 2017 on the file `yelp_dataset.tar`.
 The `yelp_dataset.tar` is stored in the `/home/ubuntu` folder.
 ```console
 $ docker run -it --rm -v /home/ubuntu/:/data newyorker/excercise /data/yelp_dataset.tar --current_date 2017-01-02

@@ -7,9 +7,9 @@ from common_functions import count_rows, copy_rows, generate_unique_random_numbe
 
 def extract_sample(input_file, output_file, sample_percentage):
     """
-
-    :param input_file:
-    :param output_file:
+    Copies a random sample of rows from one file to a new file
+    :param input_file: path to the file where the rows will be sampled
+    :param output_file: path where the sampled rows will be stored
     :param sample_percentage: the percentage which should be sampled in decimal notation e.g. 20% = 0.2
     :return:
     """

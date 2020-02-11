@@ -4,23 +4,25 @@ import datetime as dt
 import os
 
 """
+This script calls the script parses the commandline arguments and calls 
+the scripts of the single tasks in the correct order.
 """
 
-OUTPUT_FOLDER_NAME = "output"
-USER_FILENAME = "user.json"
-REVIEW_FILENAME = "review.json"
-USER_SAMPLE_FILENAME = "user_sample.json"
-REVIEW_SAMPLE_FILENAME = "review_sample.json"
-QUERY_OUTPUT_FILENAME = "users_no_review_last_year.json"
+OUTPUT_FOLDER_NAME = os.getenv("EXERCISE_OUTPUT_FOLDER_NAME", "output")
+USER_FILENAME = os.getenv("EXERCISE_USER_FILENAME", "user.json")
+REVIEW_FILENAME = os.getenv("EXERCISE_REVIEW_FILENAME", "review.json")
+USER_SAMPLE_FILENAME = os.getenv("EXERCISE_USER_SAMPLE_FILENAME", "user_sample.json")
+REVIEW_SAMPLE_FILENAME = os.getenv("EXERCISE_REVIEW_SAMPLE_FILENAME", "review_sample.json")
+QUERY_OUTPUT_FILENAME = os.getenv("EXERCISE_QUERY_OUTPUT_FILENAME", "users_no_review_last_year.json")
 SAMPLE_PERCENTAGE = 0.01
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Workflow script for sampling and querying yelp data')
-    parser.add_argument('tar_file', type=str,
-                        help='path of the yelp tar file to untar')
-    parser.add_argument('current_date', type=str, default=dt.date.today().isoformat(),
-                        help='the date in the format YYYY-MM-DD which should be handled as the current date (default: '
-                             'current day from system clock)')
+    parser = argparse.ArgumentParser(description="Workflow script for sampling and querying yelp data")
+    parser.add_argument("tar_file", type=str,
+                        help="path of the yelp tar file to untar")
+    parser.add_argument("current_date", type=str, default=dt.date.today().isoformat(),
+                        help="the date in the format YYYY-MM-DD which should be handled as the current date (default: "
+                             "current day from system clock)")
     args = parser.parse_args()
 
     # get folder of tar file and create target file paths

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
+This script queries the given users for users which have not written a review in the last year.
 """
 
 import json
@@ -11,12 +12,13 @@ from common_functions import get_user_ids
 
 def get_users_no_review_last_year(user_file, review_file, output_file, current_date):
     """
-    Writes all users which have not written a review in the last year to a given file
-    :param user_file:
-    :param review_file:
-    :param output_file:
+    Writes all users which have not written a review in the last year to a given file.
+    A user has not written a review in the last year if there is no entry in the reviews file between the
+    current day(exclusive) and the same day(inclusive) one year before.
+    :param user_file: The file where the user data is stored
+    :param review_file: The file where the reviews of the users are stored
+    :param output_file: The output file with a JSON list of user IDs which have not written a review in the last year
     :param current_date: current date as string in the format YYYY-MM-DD e.g. 2018-11-20
-    :return:
     """
     current_date = dt.datetime.strptime(current_date, "%Y-%m-%d")
     # subtract one year and handle leap years e.g. 2020-02-29
@@ -36,15 +38,15 @@ def get_users_no_review_last_year(user_file, review_file, output_file, current_d
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Writes all users which have not written a review in the last year '
-                                                 'to a given file')
-    parser.add_argument('user_file', type=str,
-                        help='path of the file where the user data is stored')
-    parser.add_argument('review_file', type=str,
-                        help='path of file which contains the reviews')
-    parser.add_argument('output_file', type=str,
-                        help='path of file where the output will be stored')
-    parser.add_argument('current_date', type=str,
-                        help='the date in the format YYYY-MM-DD which should be handled as the current date')
+    parser = argparse.ArgumentParser(description="Writes all users which have not written a review in the last year "
+                                                 "to a given file")
+    parser.add_argument("user_file", type=str,
+                        help="path of the file where the user data is stored")
+    parser.add_argument("review_file", type=str,
+                        help="path of file which contains the reviews")
+    parser.add_argument("output_file", type=str,
+                        help="path of file where the output will be stored")
+    parser.add_argument("current_date", type=str,
+                        help="the date in the format YYYY-MM-DD which should be handled as the current date")
     args = parser.parse_args()
     get_users_no_review_last_year(args.user_file, args.review_file, args.output_file, args.current_date)

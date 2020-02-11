@@ -20,18 +20,18 @@ This will store the docker image with the tag newyorker/excercise.
 
 The container which will do all tasks in order can be run with:
 ```console
-$ docker run -it --rm -v path_of_yelp_dataset:/data newyorker/excercise /data/filename_yelp current_date
+$ docker run -it --rm -v path_of_yelp_dataset:/data newyorker/excercise /data/filename_yelp --current_date date
 ```
 - `path_of_yelp_dataset` - the folder of the yelp dataset which will be hosted inside the container under the path /data
 - `filename_yelp` - the name of the yelp tar file
-- `current_date` (optional) - the current date can be passed if not the current date of the system clock will be taken
+- `date` (optional) - the current date can be passed if not the current date of the system clock will be taken
 
 Example:
 
 This example will run the query for the 2nd of February in 2017 on the file `yelp_dataset.tar`.
 The `yelp_dataset.tar` is stored in the `/home/ubuntu` folder.
 ```console
-$ docker run -it --rm -v /home/ubuntu/:/data newyorker/excercise /data/yelp_dataset.tar 2017-01-02
+$ docker run -it --rm -v /home/ubuntu/:/data newyorker/excercise /data/yelp_dataset.tar --current_date 2017-01-02
 ```
 
 The names of input and output files and folders can be changed by passing this 

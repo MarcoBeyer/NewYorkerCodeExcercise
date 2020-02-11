@@ -20,7 +20,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Workflow script for sampling and querying yelp data")
     parser.add_argument("tar_file", type=str,
                         help="path of the yelp tar file to untar")
-    parser.add_argument("current_date", type=str, default=dt.date.today().isoformat(),
+    parser.add_argument("current_date", type=str, default=dt.date.today().isoformat(), required=False,
                         help="the date in the format YYYY-MM-DD which should be handled as the current date (default: "
                              "current day from system clock)")
     args = parser.parse_args()
